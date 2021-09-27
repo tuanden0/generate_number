@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package num.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "gogoproto/gogo.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info : {title : "Generate Number";
+version : "1.0";
+contact : {
+name:
+  "tuanden0";
+url:
+  "github.com/tuanden0/generate_number";
+};
+}
+;
+}
+;
+
+service NumberService {
+  rpc Ping(NumberServicePingRequest) returns (NumberServicePingResponse) {
+    option (google.api.http) = {
+      get : "/v1/get_num/ping"
+    };
+  }
+  rpc Get(NumberServiceGetRequest) returns (NumberServiceGetResponse) {
+    option (google.api.http) = {
+      post : "/v1/get_num"
+      body : "*"
+    };
+  }
+}
+
+message NumberServicePingRequest {}
+
+message NumberServicePingResponse {}
+
+message NumberServiceGetRequest {
+  int64 num_a = 1 [(gogoproto.moretags) = "validate:\"required\""];
+  int64 num_b = 2 [(gogoproto.moretags) = "validate:\"required\""];
+  int64 num_c = 3 [(gogoproto.moretags) = "validate:\"required\""];
+  int64 num_d = 4 [(gogoproto.moretags) = "validate:\"required\""];
+}
+
+message NumberServiceGetResponse { int64 value = 1; }

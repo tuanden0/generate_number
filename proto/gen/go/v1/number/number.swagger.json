@@ -1,0 +1,143 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Generate Number",
+    "version": "1.0",
+    "contact": {
+      "name": "tuanden0",
+      "url": "github.com/tuanden0/generate_number"
+    }
+  },
+  "tags": [
+    {
+      "name": "NumberService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/get_num": {
+      "post": {
+        "operationId": "NumberService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NumberServiceGetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NumberServiceGetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NumberService"
+        ]
+      }
+    },
+    "/v1/get_num/ping": {
+      "get": {
+        "operationId": "NumberService_Ping",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NumberServicePingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "NumberService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1NumberServiceGetRequest": {
+      "type": "object",
+      "properties": {
+        "numA": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numB": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numC": {
+          "type": "string",
+          "format": "int64"
+        },
+        "numD": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1NumberServiceGetResponse": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v1NumberServicePingResponse": {
+      "type": "object"
+    }
+  }
+}
